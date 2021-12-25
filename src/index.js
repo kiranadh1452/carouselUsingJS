@@ -1,7 +1,7 @@
 const wrapper = document.getElementById("wrapper");
 const images = document.getElementById("images");
 
-const imageWidth = 200;
+const imageWidth = 500;
 const imageCount = images.children.length;
 
 images.style.width = `${imageCount * imageWidth}px`;
@@ -20,75 +20,40 @@ let currentIndex = 0;
 let interval;
 let dx = 0;
 nextBtn.onclick = function () {
-  // const currentImage = images.children[currentIndex];
-  // currentIndex++;
-  // currentImage.style.left = `-${currentIndex * imageWidth}px`;
-
   currentIndex++;
-  // images.style.left = `-${currentIndex * imageWidth}px`;
+  if(currentIndex === imageCount){
+    currentIndex=0;
+    images.style.left = `0px`;
+    return 0;
+  }
 
   interval = setInterval(() => {
     dx++;
-    images.style.left = `-${dx}px`;
+    images.style.left = `-${(imageWidth*(currentIndex-1))+dx}px`;
 
-    if (dx >= 200){
+    if (dx >= imageWidth){
       clearInterval(interval);
       dx = 0;
     }
-  }, 10);
+  }, 1);
 };
 
 prevBtn.onclick = function () {
-  // const currentImage = images.children[currentIndex];
-  // currentIndex++;
-  // currentImage.style.left = `-${currentIndex * imageWidth}px`;
+  dx = imageWidth;
+  if(currentIndex === 0){
+    currentIndex = imageCount -1 ;
+  }
+  else{
+    currentIndex--;
+  }
+  
+  interval = setInterval(() => {
+    dx--;
+    images.style.left = `-${(currentIndex * imageWidth)+dx}px`;
 
-  currentIndex--;
-  images.style.left = `-${currentIndex * imageWidth}px`;
+    if (dx <= 0){
+      clearInterval(interval);
+      dx = 0;
+    }
+  }, 1);
 };
-
-function slider(properties) {
-  // const { imageWidth, imageHeight } = properties;
-
-  properties.imageWidth;
-}
-
-slider({
-  imageWidth: 200,
-  imageHeight: 75
-});
-
-function abd() {
-  // asfas
-  // as
-  // gas
-  // gas
-  // g
-  // asg
-
-  return false;
-}
-
-/**
- *
- * @param {number} width - Width of image
- * @param {number} height - Height of image
- * @param {string} wrapperId - Id of wrapper element
- */
-function Slider(width, height, wrapperId, transitionTime, holdTime) {}
-
-// Magic Numbers
-const inlineImageGap = 4;
-images.style.width = `${
-  imageCount * imageWidth + imageCount * inlineImageGap
-}px`;
-
-// const PI = 3.14159265;
-
-// // const value = PI * r * r;
-
-// const GRAVITY = 9.81;
-// const result = GRAVITY * x + y;
-
-// Math.random();
-// console.log(Math.random() * 5);
