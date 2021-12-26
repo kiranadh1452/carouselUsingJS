@@ -6,6 +6,7 @@
 #images {
   height: 500px;
   position: relative;
+  z-index: 1;
 }
 
 #wrapper {
@@ -16,8 +17,29 @@
 
 img {
   position: absolute;
+  z-index: 1;
   width: 500px;
   height: 500px;
   border: 1px solid #ccc;
   top: 0px;
+}
+
+.control-button{
+  position: absolute;
+  top: 230px;
+  left: 20px;
+  z-index: 3;
+  outline: none;
+  border: none;
+  background:none;
+  font-size: 50px;
+  font-weight: bolder;
+  color: white;  
+}
+.control-button:hover{
+  cursor: pointer;
+}
+.btn-right{
+  position: absolute;
+  left: 500px;
 }
